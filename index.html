@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1728">
+  <meta name="description" content="Organiza tus hábitos, administra tu tiempo y alcanza tus metas con Hábitos+.">
+  <title>HÁBITOS+ | Tu progreso</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="header">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio">
+      <span class="logo">✓</span>
+      <span>
+        <strong>HÁBITOS<span class="plus">+</span></strong>
+        <small>Tu progreso, un día a la vez</small>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <button class="nav-btn active" data-section="inicio">⌂ Inicio</button>
+      <button class="nav-btn" data-section="habitos">☷ Hábitos</button>
+      <button class="nav-btn" data-section="historial">◷ Historial</button>
+      <button class="nav-btn" data-section="configuracion">⚙ Configuración</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="inicio" class="page-section">
+      <div class="hero">
+        <div class="hero-content">
+          <span class="eyebrow">TU NUEVO COMIENZO</span>
+          <h1>Pequeños hábitos.<br><span>Grandes cambios.</span></h1>
+          <p>Organiza tu día, cumple tus objetivos y mejora poco a poco.</p>
+          <button class="primary-btn" data-go="habitos">
+            Comenzar mi progreso →
+          </button>
+        </div>
+        <div class="hero-art" aria-hidden="true">🏔️</div>
+      </div>
+
+      <div class="dashboard-grid">
+        <article class="card habits-card">
+          <div class="card-heading">
+            <h2>✓ Mis hábitos de hoy</h2>
+            <span id="today-date" class="muted"></span>
+          </div>
+
+          <form id="habit-form" class="habit-form">
+            <input
+              id="habit-input"
+              type="text"
+              maxlength="80"
+              placeholder="Ej. Leer durante 20 minutos"
+              aria-label="Nombre del nuevo hábito"
+              required
+            >
+            <button class="primary-btn" type="submit">+ Agregar</button>
+          </form>
+
+          <p id="empty-message" class="empty-message">
+            Todavía no tienes hábitos. ¡Agrega el primero!
+          </p>
+
+          <ul id="habit-list" class="habit-list"></ul>
+        </article>
+
+        <article class="card progress-card">
+          <h2>📊 Mi progreso</h2>
+          <div class="progress-summary">
+            <strong id="progress-count">0 de 0</strong>
+            <span class="muted">hábitos completados</span>
+          </div>
+
+          <div
+            id="progress-track"
+            class="progress-track"
+            role="progressbar"
+            aria-label="Progreso de hoy"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+          <p id="progress-percent" class="percent">0%</p>
+          <p id="motivation" class="motivation">
+            Cada pequeño paso cuenta. 🌱
+          </p>
+        </article>
+
+        <article class="card history-preview">
+          <div class="card-heading">
+            <h2>📅 Últimos días</h2>
+            <button class="text-btn" data-go="historial">Ver historial →</button>
+          </div>
+          <div id="history-preview" class="history-strip"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="habitos" class="page-section hidden">
+      <div class="section-heading">
+        <span class="eyebrow">TU RUTINA</span>
+        <h1>Mis hábitos</h1>
+        <p>Crea actividades realistas y avanza a tu propio ritmo.</p>
+      </div>
+
+      <article class="card">
+        <h2>Lista de hoy</h2>
+        <p class="muted">Marca una casilla cuando termines una actividad.</p>
+        <ul id="habit-list-full" class="habit-list"></ul>
+        <p id="empty-message-full" class="empty-message">
+          Agrega hábitos desde la página de inicio.
+        </p>
+      </article>
+    </section>
+
+    <section id="historial" class="page-section hidden">
+      <div class="section-heading">
+        <span class="eyebrow">MIRA LO QUE HAS LOGRADO</span>
+        <h1>Mi historial</h1>
+        <p>Consulta los registros de tus días anteriores.</p>
+      </div>
+
+      <article class="card">
+        <div class="card-heading">
+          <h2>Progreso por día</h2>
+          <button id="clear-history" class="text-btn">Borrar historial</button>
+        </div>
+        <div id="history-list" class="history-list"></div>
+      </article>
+    </section>
+
+    <section id="configuracion" class="page-section hidden">
+      <div class="section-heading">
+        <span class="eyebrow">A TU MANERA</span>
+        <h1>Configuración</h1>
+        <p>Personaliza tu experiencia.</p>
+      </div>
+
+      <article class="card settings-card">
+        <form id="settings-form">
+          <label for="user-name">¿Cómo te llamas?</label>
+          <input id="user-name" type="text" maxlength="40" placeholder="Tu nombre">
+
+          <label for="theme-select">Tema de la página</label>
+          <select id="theme-select">
+            <option value="dark">Oscuro</option>
+            <option value="light">Claro</option>
+          </select>
+
+          <button type="submit" class="primary-btn">Guardar configuración</button>
+          <p id="settings-message" class="muted" aria-live="polite"></p>
+        </form>
+
+        <div class="danger-zone">
+          <h2>Reiniciar aplicación</h2>
+          <p class="muted">Elimina tus hábitos y registros guardados.</p>
+          <button id="reset-app" class="danger-btn">Borrar todos mis datos</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <strong>HÁBITOS<span class="plus">+</span></strong>
+    <span>Hecho con 💚 para tus metas.</span>
+    <small>© <span id="year"></span> HÁBITOS+</small>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
